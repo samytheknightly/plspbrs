@@ -60,9 +60,9 @@
 </head>
 
 <body>
-    <form onsubmit="(event => event.preventDefault())()" class="container">
+    <form onsubmit="preventDefault(event)" class="container">
         <div class="inputContainer">
-            <input type="number" id="price" placeholder="Preis" />
+            <input type="number" step=".01" id="price" placeholder="Preis" />
             <input type="number" id="amount" placeholder="Anzahl" />
         </div>
 
@@ -76,6 +76,7 @@
     </form>
 
     <script>
+        const preventDefault = event => event.preventDefault()
         function calculateStockPrice() {
             const minimumCharge = 15
 
@@ -93,15 +94,15 @@
             const lossStockPrice = total - chargeAmount
 
             // Calculate the break -even stock price
-            const breakEvenStockPrice = total
+            const breakEvenStockPrice = total + chargeAmount
 
             // Calculate the stock price for profit
-            const profitStockPrice = total + chargeAmount
+            const profitStockPrice = total + chargeAmount + chargeAmount
 
 
-            document.getElementById("loss").textContent = lossStockPrice / amount
-            document.getElementById("breakEven").textContent = breakEvenStockPrice / amount
-            document.getElementById("profit").textContent = profitStockPrice / amount
+            document.getElementById("loss").textContent = (lossStockPrice / amount).toFixed(2)
+            document.getElementById("breakEven").textContent = (breakEvenStockPrice / amount).toFixed(2)
+            document.getElementById("profit").textContent = (profitStockPrice / amount).toFixed(2)
         }
     </script>
 </body>
