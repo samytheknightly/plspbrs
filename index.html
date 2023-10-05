@@ -60,7 +60,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <form onsubmit="(event => event.preventDefault())()" class="container">
         <div class="inputContainer">
             <input type="number" id="price" placeholder="Preis" />
             <input type="number" id="amount" placeholder="Anzahl" />
@@ -73,7 +73,7 @@
         <p>Verlust: <span id="loss"></span></p>
         <p>Break Even: <span id="breakEven"></span></p>
         <p>Gewinn: <span id="profit"></span></p>
-    </div>
+    </form>
 
     <script>
         function calculateStockPrice() {
