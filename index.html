@@ -68,9 +68,9 @@
 
 <body>
     <div class="container">
-        <p>Verlust: <span id="loss"></span></p>
-        <p>Break Even: <span id="breakEven"></span></p>
-        <p>Gewinn: <span id="profit"></span></p>
+        <p>Verlust (-100): <span id="loss"></span></p>
+        <p>Break Even (+/- 0): <span id="breakEven"></span></p>
+        <p>Gewinn (+100): <span id="profit"></span></p>
 
         <div class="inputContainer">
             <input type="number" step=".01" id="price" placeholder="Preis" />
@@ -94,15 +94,14 @@
             // Calculate the charge amount
             const chargeAmount = Math.max(total * chargePercentage, minimumCharge)
 
-            // Calculate the stock price for loss
-            const lossStockPrice = total - chargeAmount
-
             // Calculate the break -even stock price
-            const breakEvenStockPrice = total + chargeAmount
+            const breakEvenStockPrice = total + chargeAmount + Math.max((total + chargeAmount) * chargePercentage, minimumCharge)
+
+            // Calculate the stock price for loss
+            const lossStockPrice = breakEvenStockPrice - 100
 
             // Calculate the stock price for profit
-            const profitStockPrice = total + chargeAmount + chargeAmount
-
+            const profitStockPrice = breakEvenStockPrice + 100
 
             document.getElementById("loss").textContent = (lossStockPrice / amount).toFixed(2)
             document.getElementById("breakEven").textContent = (breakEvenStockPrice / amount).toFixed(2)
