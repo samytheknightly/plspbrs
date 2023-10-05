@@ -81,8 +81,8 @@
 
             const chargePercentage = 0.003
 
-            const marketValue = document.getElementById("price").value
-            const amount = document.getElementById("amount").value
+            const marketValue = Number(document.getElementById("price").value)
+            const amount = Number(document.getElementById("amount").value)
 
             const total = marketValue * amount
 
@@ -99,9 +99,9 @@
             const profitStockPrice = total + chargeAmount
 
 
-            document.getElementById("loss").textContent = lossStockPrice
-            document.getElementById("breakEven").textContent = breakEvenStockPrice
-            document.getElementById("profit").textContent = profitStockPrice
+            document.getElementById("loss").textContent = lossStockPrice / amount
+            document.getElementById("breakEven").textContent = breakEvenStockPrice / amount
+            document.getElementById("profit").textContent = profitStockPrice / amount
         }
     </script>
 </body>
