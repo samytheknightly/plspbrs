@@ -66,49 +66,43 @@
             <input type="number" id="amount" placeholder="Anzahl" />
         </div>
 
-        <input style="width: 100%" type="submit">
+        <input style="width: 100%" type="submit"
+            onclick="calculateStockPrice(document.getElementById('price').value, document.getElementById('amount').value)"
+            value="Berechnen">
 
         <p>Verlust: <span id="loss"></span></p>
         <p>Break Even: <span id="breakEven"></span></p>
         <p>Gewinn: <span id="profit"></span></p>
     </div>
+
     <script>
-        function calculateStockPrice(marketValue, chargePercentage, minimumCharge) {
+        function calculateStockPrice() {
+            const minimumCharge = 15
+
+            const chargePercentage = 0.003
+
+            const marketValue = document.getElementById("price").value
+            const amount = document.getElementById("amount").value
+
+            const total = marketValue * amount
+
             // Calculate the charge amount
-            const chargeAmount = Math.max(marketValue * chargePercentage, minimumCharge)
+            const chargeAmount = Math.max(total * chargePercentage, minimumCharge)
 
             // Calculate the stock price for loss
-            const lossStockPrice = marketValue - chargeAmount
+            const lossStockPrice = total - chargeAmount
 
             // Calculate the break -even stock price
-            const breakEvenStockPrice = marketValue
+            const breakEvenStockPrice = total
 
             // Calculate the stock price for profit
-            const profitStockPrice = marketValue + chargeAmount
+            const profitStockPrice = total + chargeAmount
 
-            return {
-                lossStockPrice,
-                breakEvenStockPrice,
-                profitStockPrice
-            }
+
+            document.getElementById("loss").textContent = lossStockPrice
+            document.getElementById("breakEven").textContent = breakEvenStockPrice
+            document.getElementById("profit").textContent = profitStockPrice
         }
-
-        // Example usage
-        const marketValue = 1000
-        // Replace with the actual market value of the stock
-        const chargePercentage = 0.003
-        // 0.3 % expressed as a decimal
-        const minimumCharge = 15
-        // Minimum charge
-
-        const result = calculateStockPrice(parseInt(marketValue), chargePercentage, minimumCharge)
-        console.log("Stock Price for Loss:", result.lossStockPrice)
-        console.log("Break-Even Stock Price:", result.breakEvenStockPrice)
-        console.log("Stock Price for Profit:", result.profitStockPrice)
-
-        document.getElementById("loss").textContent = result.lossStockPrice
-        document.getElementById("breakEven").textContent = result.breakEvenStockPrice
-        document.getElementById("profit").textContent = result.profitStockPrice
     </script>
 </body>
 
