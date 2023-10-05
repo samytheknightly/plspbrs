@@ -28,6 +28,7 @@
             display: flex;
             gap: .4em;
             width: 100%;
+            margin-top: 1em;
         }
 
         input:not([type=submit]) {
@@ -57,27 +58,29 @@
             height: min-content;
             gap: .4em;
         }
+
+        p,
+        span {
+            color: #fff;
+        }
     </style>
 </head>
 
 <body>
-    <form onsubmit="preventDefault(event)" class="container">
+    <div class="container">
+        <p>Verlust: <span id="loss"></span></p>
+        <p>Break Even: <span id="breakEven"></span></p>
+        <p>Gewinn: <span id="profit"></span></p>
+
         <div class="inputContainer">
             <input type="number" step=".01" id="price" placeholder="Preis" />
             <input type="number" id="amount" placeholder="Anzahl" />
         </div>
 
-        <input style="width: 100%" type="submit"
-            onclick="calculateStockPrice(document.getElementById('price').value, document.getElementById('amount').value)"
-            value="Berechnen">
-
-        <p>Verlust: <span id="loss"></span></p>
-        <p>Break Even: <span id="breakEven"></span></p>
-        <p>Gewinn: <span id="profit"></span></p>
-    </form>
+        <input style="width: 100%" onclick="calculateStockPrice()" type="submit" value="Berechnen">
+    </div>
 
     <script>
-        const preventDefault = event => event.preventDefault()
         function calculateStockPrice() {
             const minimumCharge = 15
 
