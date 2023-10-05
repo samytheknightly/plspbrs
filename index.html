@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planspiel Börse Rechner</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: 0;
+            background: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .inputContainer {
+            display: flex;
+            gap: .4em;
+            width: 100%;
+        }
+
+        input:not([type=submit]) {
+            background: rgb(224, 178, 178);
+        }
+
+        input {
+            flex: 1;
+            padding: 1rem;
+            width: 4rem;
+            border-radius: .5em;
+            justify-content: center;
+            align-items: center;
+            background: rgb(65, 65, 231);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            width: 20rem;
+            height: min-content;
+            gap: .4em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inputContainer">
+            <input type="number" id="price" placeholder="Preis" />
+            <input type="number" id="amount" placeholder="Anzahl" />
+        </div>
+
+        <input style="width: 100%" type="submit">
+    </div>
+</body>
+
+</html>
