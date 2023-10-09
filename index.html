@@ -88,7 +88,9 @@
 
             const netWorth = Number(document.getElementById("netWorth").value)
             const marketValue = Number(document.getElementById("price").value)
-            const total = (netWorth / 5) / marketValue
+            const amount = (netWorth / 5) / marketValue
+
+            const total = marketValue * amount
 
             // Calculate the charge amount
             const chargeAmount = Math.max(total * chargePercentage, minimumCharge)
