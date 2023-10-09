@@ -74,7 +74,7 @@
 
         <div class="inputContainer">
             <input type="number" step=".01" id="price" placeholder="Preis" />
-            <input type="number" id="amount" placeholder="Anzahl" />
+            <input type="number" id="netWorth" placeholder="Portfolio-Wert" />
         </div>
 
         <input style="width: 100%" onclick="calculateStockPrice()" type="submit" value="Berechnen">
@@ -86,22 +86,23 @@
 
             const chargePercentage = 0.003
 
+            const netWorth = Number(document.getElementById("netWorth").value)
             const marketValue = Number(document.getElementById("price").value)
-            const amount = Number(document.getElementById("amount").value)
+            const amount = (netWorth / 5) / marketValue
 
-            const total = marketValue * amount
+            const total = marketValue
 
             // Calculate the charge amount
             const chargeAmount = Math.max(total * chargePercentage, minimumCharge)
 
             // Calculate the break -even stock price
-            const breakEvenStockPrice = total + chargeAmount + Math.max((total + chargeAmount) * chargePercentage, minimumCharge)
+            const breakEvenStockPrice = total + chargeAmount + Math.max((total + chargeAmount - 100) * chargePercentage, minimumCharge)
 
             // Calculate the stock price for loss
-            const lossStockPrice = breakEvenStockPrice - 100
+            const lossStockPrice = total + chargeAmount + Math.max((total + chargeAmount) * chargePercentage, minimumCharge)
 
             // Calculate the stock price for profit
-            const profitStockPrice = breakEvenStockPrice + 100
+            const profitStockPrice = total + chargeAmount + Math.max((total + chargeAmount + 100) * chargePercentage, minimumCharge)
 
             document.getElementById("loss").textContent = (lossStockPrice / amount).toFixed(2)
             document.getElementById("breakEven").textContent = (breakEvenStockPrice / amount).toFixed(2)
